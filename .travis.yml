@@ -21,4 +21,4 @@ after_success:
   - docker push longfight123/multi-client
   - docker push longfight123/multi-nginx
   - docker push longfight123/multi-server
-  - docker push longfight1233/multi-worker
+  - docker push longfight123/multi-worker
