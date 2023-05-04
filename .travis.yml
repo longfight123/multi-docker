@@ -13,3 +13,12 @@ after_success:
   - docker build -t longfight123/multi-nginx -f ./nginx/Dockerfile ./nginx
   - docker build -t longfight123/multi-server -f ./server/Dockerfile ./server
   - docker build -t longfight123/multi-worker -f ./worker/Dockerfile ./worker
+
+# log in to the docker clie
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+
+# take those images and push them to docker hub
+  - docker push longfight123/multi-client
+  - docker push longfight123/multi-nginx
+  - docker push longfight123/multi-server
+  - docker push longfight1233/multi-worker
