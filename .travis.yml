@@ -1,0 +1,15 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t longfight123/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run -e CI=true longfight123/react-test npm run test
+
+after_success:
+  - docker build -t longfight123/multi-client -f ./client/Dockerfile ./client
+  - docker build -t longfight123/multi-nginx -f ./nginx/Dockerfile ./nginx
+  - docker build -t longfight123/multi-server -f ./server/Dockerfile ./server
+  - docker build -t longfight123/multi-worker -f ./worker/Dockerfile ./worker
